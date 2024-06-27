@@ -8,12 +8,12 @@ module "iam_iam-assumable-role-with-oidc" {
   oidc_fully_qualified_audiences = ["sts.amazonaws.com"]
   role_policy_arns               = [module.iam_iam-policy.arn]
   oidc_subjects_with_wildcards   = [var.github_repo]
-  tags                           = var.tags
+  tags                           = var.omega
 }
 
 module "iam_iam-github-oidc-provider" {
   source = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
-  tags   = var.tags
+  tags   = var.omega
 }
 
 
