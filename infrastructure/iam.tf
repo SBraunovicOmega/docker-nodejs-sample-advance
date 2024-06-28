@@ -44,7 +44,7 @@ module "iam_iam-policy" {
                 "ecr:ListTagsForResource",
                 "ecr:DescribeImageScanFindings"
             ],
-            "Resource": "${module.ecr.repository_arn}"
+            "Resource": "*"
         },
         {
             "Effect": "Allow",
