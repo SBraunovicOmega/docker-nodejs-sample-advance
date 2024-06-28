@@ -44,6 +44,26 @@ module "iam_iam-policy" {
                 "ecr:ListTagsForResource",
                 "ecr:DescribeImageScanFindings"
             ],
+            "Resource": "${module.ecr.repository_arn}"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "eks:AccessKubernetesApi",
+                "eks:CreateCluster",
+                "eks:DescribeCluster",
+                "eks:ListClusters",
+                "eks:DescribeNodegroup",
+                "eks:ListNodegroups",
+                "eks:DescribeUpdate",
+                "eks:ListUpdates",
+                "eks:UpdateClusterConfig",
+                "eks:UpdateClusterVersion",
+                "eks:CreateNodegroup",
+                "eks:UpdateNodegroupConfig",
+                "eks:UpdateNodegroupVersion",
+                "eks:DeleteNodegroup",
+            ],
             "Resource": "*"
         }
     ]

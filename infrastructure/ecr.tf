@@ -1,8 +1,10 @@
 module "ecr" {
   source = "terraform-aws-modules/ecr/aws"
 
-  repository_name = "private-example"
+  repository_name = "private-ecr"
 
+
+  repository_read_write_access_arns = [var.github_repo]
 
   repository_lifecycle_policy = jsonencode({
     rules = [
