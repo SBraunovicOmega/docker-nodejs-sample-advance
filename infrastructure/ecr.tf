@@ -4,7 +4,7 @@ module "ecr" {
   repository_name = "private-ecr"
 
 
-  repository_read_write_access_arns = [var.github_repo]
+  repository_read_write_access_arns = [module.iam_iam-assumable-role-with-oidc.iam_role_arn]
 
   repository_lifecycle_policy = jsonencode({
     rules = [
