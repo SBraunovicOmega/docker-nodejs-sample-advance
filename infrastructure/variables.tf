@@ -49,6 +49,6 @@ variable "zone_id" {
 
 variable "namespace_account" {
   type    = string
-  default = "vegait-load-balancer:"
+  default = "vegait-load-balancer"
 }
 
