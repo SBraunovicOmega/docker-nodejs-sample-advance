@@ -3,7 +3,7 @@ module "eks" {
   version = "~> 20.0"
 
   cluster_name                         = "eks-sbraunovic-cluster"
-  cluster_version                      = "1.29"
+  cluster_version                      = "1.30"
   cluster_endpoint_public_access_cidrs = ["37.0.71.30/32"]
   cluster_endpoint_public_access       = true
   cluster_endpoint_private_access      = true

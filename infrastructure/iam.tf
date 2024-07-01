@@ -26,50 +26,44 @@ module "iam_iam-policy" {
 
   policy = <<EOF
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ecr:GetAuthorizationToken",
-                "ecr:BatchCheckLayerAvailability",
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:GetRepositoryPolicy",
-                "ecr:DescribeRepositories",
-                "ecr:ListImages",
-                "ecr:DescribeImages",
-                "ecr:BatchGetImage",
-                "ecr:GetLifecyclePolicy",
-                "ecr:GetLifecyclePolicyPreview",
-                "ecr:ListTagsForResource",
-                "ecr:DescribeImageScanFindings"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "eks:AccessKubernetesApi",
-                "eks:CreateCluster",
-                "eks:DescribeCluster",
-                "eks:ListClusters",
-                "eks:DescribeNodegroup",
-                "eks:ListNodegroups",
-                "eks:DescribeUpdate",
-                "eks:ListUpdates",
-                "eks:UpdateClusterConfig",
-                "eks:UpdateClusterVersion",
-                "eks:CreateNodegroup",
-                "eks:UpdateNodegroupConfig",
-                "eks:UpdateNodegroupVersion",
-                "eks:DeleteNodegroup",
-            ],
-            "Resource": "*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecr:GetAuthorizationToken",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:GetRepositoryPolicy",
+        "ecr:DescribeRepositories",
+        "ecr:ListImages",
+        "ecr:DescribeImages",
+        "ecr:BatchGetImage",
+        "ecr:GetLifecyclePolicy",
+        "ecr:GetLifecyclePolicyPreview",
+        "ecr:ListTagsForResource",
+        "ecr:DescribeImageScanFindings"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "eks:AccessKubernetesApi",
+        "eks:CreateCluster",
+        "eks:DescribeCluster",
+        "eks:ListClusters",
+        "eks:ListUpdates",
+        "eks:UpdateClusterConfig",
+        "eks:UpdateClusterVersion"
+      ],
+      "Resource": "*"
+    }
+  ]
 }
 EOF
 
   tags = var.tags
 }
+
 

@@ -46,3 +46,9 @@ variable "zone_id" {
   default = "Z07475403IQFN5IUZ6XJ9"
 }
 
+
+variable "namespace_account" {
+  type    = string
+  default = "vegait-load-balancer:"
+}
+
