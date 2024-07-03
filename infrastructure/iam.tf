@@ -40,6 +40,11 @@ module "iam_iam-policy" {
       ],
       "Resource": "*"
     },
+      {
+            "Effect": "Allow",
+            "Action": "ecr:GetAuthorizationToken",
+            "Resource": "*"
+        },
     {
       "Effect": "Allow",
       "Action": [
