@@ -35,3 +35,17 @@ variable "github_repo" {
   default = "repo:sbraunovicomega/docker-nodejs-sample-advance*"
 }
 
+
+variable "domain_name" {
+  type    = string
+  default = "sbraunovic.omega.devops.sitestage"
+}
+
+variable "zone_id" {
+  type    = string
+  default = "Z07475403IQFN5IUZ6XJ9"
+}
+
+
+
+
