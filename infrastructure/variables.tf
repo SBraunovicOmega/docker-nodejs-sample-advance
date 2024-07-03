@@ -38,9 +38,8 @@ variable "github_repo" {
 
 variable "domain_name" {
   type    = string
-  default = "sbraunovic.omega.devops.sitestage"
+  default = "sbraunovic.omega.devops.sitesstage.com"
 }
-
 variable "zone_id" {
   type    = string
   default = "Z07475403IQFN5IUZ6XJ9"
