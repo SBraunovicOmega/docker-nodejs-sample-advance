@@ -31,21 +31,22 @@ module "iam_iam-policy" {
     {
       "Effect": "Allow",
       "Action": [
-        "ecr:GetAuthorizationToken",
-        "ecr:BatchCheckLayerAvailability",
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:GetRepositoryPolicy",
-        "ecr:DescribeRepositories",
-        "ecr:ListImages",
-        "ecr:DescribeImages",
-        "ecr:BatchGetImage",
-        "ecr:GetLifecyclePolicy",
-        "ecr:GetLifecyclePolicyPreview",
-        "ecr:ListTagsForResource",
-        "ecr:DescribeImageScanFindings"
+            "ecr:CompleteLayerUpload",
+            "ecr:UploadLayerPart",
+            "ecr:InitiateLayerUpload",
+            "ecr:BatchCheckLayerAvailability",
+            "ecr:PutImage"
       ],
-      "Resource": "*"
+         "Resource": "${module.ecr.repository_arn}"
     },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*"
+        },
+    
     {
       "Effect": "Allow",
       "Action": [

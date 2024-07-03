@@ -7,7 +7,7 @@ module "irsa_load_balancer" {
   oidc_providers = {
     one = {
       provider_arn               = module.iam_iam-github-oidc-provider.arn
-      namespace_service_accounts = ["${var.namespace_account}:load-balancer"]
+      namespace_service_accounts = ["vegait-load-balancer:load-balancer"]
     }
   }
 }
