@@ -11,3 +11,19 @@ module "irsa_load_balancer" {
     }
   }
 }
+
+
+module "ebs_csi_irsa" {
+  source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+
+  role_name = "ebs-csi"
+
+  attach_ebs_csi_policy = true
+
+  oidc_providers = {
+    main = {
+      provider_arn               = module.iam_iam-github-oidc-provider.arn
+      namespace_service_accounts = ["kube-system:ebs-csi-controller-sa"]
+    }
+  }
+}

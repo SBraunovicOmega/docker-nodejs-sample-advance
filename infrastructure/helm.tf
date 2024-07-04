@@ -35,11 +35,12 @@ resource "helm_release" "load_balancer_controller" {
 }
 
 
+
+
 resource "kubernetes_storage_class" "storage_class" {
   metadata {
     name = "storage-class"
   }
-
   storage_provisioner = "ebs.csi.aws.com"
   volume_binding_mode = "WaitForFirstConsumer"
 
