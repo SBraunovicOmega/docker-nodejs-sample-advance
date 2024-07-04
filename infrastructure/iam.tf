@@ -31,22 +31,21 @@ module "iam_iam-policy" {
     {
       "Effect": "Allow",
       "Action": [
-            "ecr:CompleteLayerUpload",
-            "ecr:UploadLayerPart",
-            "ecr:InitiateLayerUpload",
-            "ecr:BatchCheckLayerAvailability",
-            "ecr:PutImage"
+        "ecr:CompleteLayerUpload",
+        "ecr:UploadLayerPart",
+        "ecr:InitiateLayerUpload",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:PutImage"
       ],
-         "Resource": "${module.ecr.repository_arn}"
+      "Resource": "${module.ecr.repository_arn}"
     },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ecr:GetAuthorizationToken"
-            ],
-            "Resource": "*"
-        },
-    
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecr:GetAuthorizationToken"
+      ],
+      "Resource": "*"
+    },
     {
       "Effect": "Allow",
       "Action": [
@@ -66,5 +65,6 @@ EOF
 
   tags = var.tags
 }
+
 
 
