@@ -6,7 +6,7 @@ module "irsa_load_balancer" {
 
   oidc_providers = {
     one = {
-      provider_arn               = module.iam_iam-github-oidc-provider.arn
+      provider_arn               = module.eks.oidc_provider_arn
       namespace_service_accounts = ["vegait-load-balancer:load-balancer"]
     }
   }
@@ -22,7 +22,7 @@ module "ebs_csi_irsa" {
 
   oidc_providers = {
     main = {
-      provider_arn               = module.iam_iam-github-oidc-provider.arn
+      provider_arn               = module.eks.oidc_provider_arn
       namespace_service_accounts = ["kube-system:ebs-csi-controller-sa"]
     }
   }
