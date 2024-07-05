@@ -28,63 +28,81 @@ resource "helm_release" "load_balancer_controller" {
     name  = "defaultTargetType"
     value = "ip"
   }
-  set {
-    name  = "primary.persistence.storageClass"
-    value = kubernetes_storage_class.storage_class.metadata[0].name
-  }
+
 }
+
+
 
 
 resource "kubernetes_storage_class" "storage_class" {
   metadata {
-    name = "storage-class"
+    name = "stefan-storage-class"
+
   }
-
-  storage_provisioner = "ebs.csi.aws.com"
-  volume_binding_mode = "WaitForFirstConsumer"
-
+  depends_on             = [module.eks]
+  reclaim_policy         = "Delete"
+  storage_provisioner    = "ebs.csi.aws.com"
+  volume_binding_mode    = "WaitForFirstConsumer"
+  allow_volume_expansion = true
   parameters = {
     "encrypted" = "true"
   }
 }
 
-resource "helm_release" "bitnami_psql" {
-  name       = "stefan-binami-psgl"
-  repository = "oci://registry-1.docker.io/bitnamicharts/postgresql"
-  chart      = "my-release"
-  namespace  = "vegait-training"
-  version    = "~> 16.3.0"
+resource "helm_release" "bitnamipsql" {
+  name             = "stefan-postgresql"
+  repository       = "https://charts.bitnami.com/bitnami"
+  chart            = "postgresql"
+  version          = "~> 15.5.0"
+  create_namespace = true
+  namespace        = "vegait-training"
+
+
+
 
   set {
+    name  = "auth.username"
+    value = lookup(jsondecode(sensitive(data.aws_secretsmanager_secret_version.secrets.secret_string)), "username", "")
+  }
+
+  set {
+    name  = "auth.password"
+    value = lookup(jsondecode(sensitive(data.aws_secretsmanager_secret_version.secrets.secret_string)), "password", "")
+  }
+
+  set {
+    name  = "auth.database"
+    value = lookup(jsondecode(sensitive(data.aws_secretsmanager_secret_version.secrets.secret_string)), "dbname", "")
+  }
+  set {
+    name  = "containerPorts.postgresql"
+    value = lookup(jsondecode(sensitive(data.aws_secretsmanager_secret_version.secrets.secret_string)), "port", "")
+  }
+  set {
     name  = "primary.persistence.enabled"
-    value = "true"
+    value = true
   }
   set {
     name  = "primary.persistence.volumeName"
-    value = "psql-pvc-volume"
+    value = "stefan-persistent-volume"
   }
   set {
     name  = "primary.persistence.accessModes[0]"
     value = "ReadWriteOnce"
   }
-  set {
-    name  = "auth.username"
-    value = lookup(jsondecode(sensitive(data.aws_secretsmanager_secret_version.secrets.secret_string)), "username", "Error")
-  }
-  set {
-    name  = "auth.password"
-    value = lookup(jsondecode(sensitive(data.aws_secretsmanager_secret_version.secrets.secret_string)), "password", "Error")
-  }
-  set {
-    name  = "auth.database"
-    value = lookup(jsondecode(sensitive(data.aws_secretsmanager_secret_version.secrets.secret_string)), "dbname", "Error")
-  }
-  set {
-    name  = "containerPorts.postgresql"
-    value = lookup(jsondecode(sensitive(data.aws_secretsmanager_secret_version.secrets.secret_string)), "port", "Error")
-  }
+
   set {
     name  = "primary.persistence.storageClass"
     value = kubernetes_storage_class.storage_class.metadata[0].name
+  }
+
+  set {
+    name  = "serviceAccount.create"
+    value = "false"
+  }
+
+  set {
+    name  = "primary.persistence.size"
+    value = "8Gi"
   }
 }

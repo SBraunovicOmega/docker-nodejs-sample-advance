@@ -12,10 +12,18 @@ module "eks" {
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
+  cluster_addons = {
 
+    aws-ebs-csi-driver = {
+      addon_version            = "v1.30.0-eksbuild.1"
+      service_account_role_arn = module.ebs_csi_irsa.iam_role_arn
+      resolve_conflicts        = "PRESERVE"
+    }
+  }
 
 
   eks_managed_node_groups = {
+
     example = {
       min_size       = 1
       max_size       = 10
@@ -40,7 +48,7 @@ module "eks" {
         git = {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEditPolicy"
           access_scope = {
-            namespaces = ["sbraunovic-omega"]
+            namespaces = ["vegait-training"]
             type       = "namespace"
           }
         }
