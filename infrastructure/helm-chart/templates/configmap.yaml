@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: {{ .Release.Name }}-configmap
+    namespace: vegait-training 
+    labels:
+        app: {{ .Values.label }}
+data:
+    POSTGRES_HOST: {{ .Values.configmap.host }}
+    POSTGRES_PORT: "{{ .Values.configmap.port }}"
