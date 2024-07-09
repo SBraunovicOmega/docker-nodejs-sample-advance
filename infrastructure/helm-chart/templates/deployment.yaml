@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: vegait-training 
+  labels:
+    app: {{ .Values.label }}
+spec:
+  replicas: {{ .Values.app.replica_count }}
+  selector:
+    matchLabels:
+      app: {{ .Values.label }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.label }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}
+          image: {{ .Values.app.image }}
+          ports:
+            - containerPort: {{ .Values.app.port }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-configmap
+            - secretRef:
+                name: {{ .Release.Name }}-secret

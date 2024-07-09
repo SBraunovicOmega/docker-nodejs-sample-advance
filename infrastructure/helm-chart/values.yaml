@@ -1,0 +1,34 @@
+configmap:
+  host:
+  port:
+
+label:
+namespace:
+
+secret:
+  user:
+  password:
+  db:
+
+
+app:
+  image:
+  tag:
+  port:
+  replica_count:
+
+service:
+  alb_type:
+  alb_target_type:
+  protocol:
+  port:
+  target_port:
+
+ingress:
+  className:
+  certificate_arn:
+  host:
+  path:
+  path_type:
+  albTargetType: 
+  scheme: 
