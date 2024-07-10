@@ -43,6 +43,7 @@ variable "domain_name" {
 variable "zone_id" {
   type    = string
   default = "Z07475403IQFN5IUZ6XJ9"
+
 }
 
 

@@ -5,7 +5,7 @@ module "ecr" {
 
 
   repository_read_write_access_arns = [module.iam_iam-assumable-role-with-oidc.iam_role_arn]
-
+  repository_image_tag_mutability   = "MUTABLE"
   repository_lifecycle_policy = jsonencode({
     rules = [
       {
@@ -28,3 +28,5 @@ module "ecr" {
     Terraform = "true"
   }
 }
+
+

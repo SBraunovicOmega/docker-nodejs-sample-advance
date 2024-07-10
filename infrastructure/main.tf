@@ -33,11 +33,18 @@ provider "helm" {
       command     = "aws"
     }
   }
+  registry {
+
+    url      = join("", ["oci://", module.ecr.repository_url])
+    username = data.aws_ecr_authorization_token.token.user_name
+    password = data.aws_ecr_authorization_token.token.password
+  }
 
 }
 
 
 provider "kubernetes" {
+
   host                   = module.eks.cluster_endpoint
   cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
 
@@ -47,4 +54,9 @@ provider "kubernetes" {
     command     = "aws"
   }
 }
+data "aws_ecr_authorization_token" "token" {
+}
+
+
+
 

@@ -30,7 +30,7 @@ module "eks" {
       desired_size   = 1
       ami_type       = "BOTTLEROCKET_x86_64"
       instance_types = ["t3.small"]
-      capacity_type  = "SPOT"
+      capacity_type  = "ON_DEMAND"
       iam_role_name  = "sbraunovic-eks-role"
       iam_role_additional_policies = {
         AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
