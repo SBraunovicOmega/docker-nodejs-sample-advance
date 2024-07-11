@@ -183,7 +183,7 @@ resource "helm_release" "todo_app" {
 
   set {
     name  = "app.image"
-    value = "stefanb15/simple-app:tag"
+    value = module.ecr.repository_url
   }
 
   set {
