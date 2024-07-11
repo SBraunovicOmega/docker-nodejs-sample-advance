@@ -41,7 +41,7 @@ module "iam_iam-policy" {
         "ecr:BatchCheckLayerAvailability",
         "ecr:PutImage"
       ],
-      "Resource": "${module.ecr.repository_arn}"
+      "Resource": "*"
     },
     {
       "Effect": "Allow",
