@@ -11,6 +11,10 @@ module "iam_iam-assumable-role-with-oidc" {
   tags                           = var.omega
 }
 
+output "test2" {
+  value = module.iam_iam-assumable-role-with-oidc.iam_role_arn
+}
+
 module "iam_iam-github-oidc-provider" {
   source = "terraform-aws-modules/iam/aws//modules/iam-github-oidc-provider"
   tags   = var.omega
@@ -55,7 +59,8 @@ module "iam_iam-policy" {
         "eks:ListClusters",
         "eks:ListUpdates",
         "eks:UpdateClusterConfig",
-        "eks:UpdateClusterVersion"
+        "eks:UpdateClusterVersion",
+        "sts:AssumeRoleWithWebIdentity"
       ],
       "Resource": "*"
     }
