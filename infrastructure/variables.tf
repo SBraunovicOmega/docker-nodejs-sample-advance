@@ -32,7 +32,7 @@ variable "base_cidr_block" {
 
 variable "github_repo" {
   type    = string
-  default = "repo:sbraunvoicomega/docker-nodejs-sample-advance:*"
+  default = "repo:SBraunovicOmega/docker-nodejs-sample-advance:*"
 }
 
 
