@@ -18,7 +18,7 @@ env:
     AWS_REGION: eu-central-1
     AWS_ECR_REPOSITORY: private-ecr
     CLUSTER_NAME: eks-sbraunovic-cluster
-    RELEASE_NAME: todo
+    RELEASE_NAME: stefan-todo 
 
 jobs:
     test-app:
